@@ -14,15 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterContacto  extends RecyclerView.Adapter<AdapterContacto.ViewHolder> {
-    private LayoutInflater inflador; List<Contacto> contactList; Context micontext; private int[] colors;
+    private LayoutInflater inflador;
+    List<Contacto> contactList;
+    Context micontext;
+    private int[] colors;
+
     public AdapterContacto(Context context, ArrayList<Contacto> contactList, int[] colors) {
-        this.contactList= contactList; this.micontext=context; this.colors = colors;
+        this.contactList= contactList;
+        this.micontext=context;
+        this.colors = colors;
         inflador = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = inflador.inflate(R.layout.item_contacto, parent, false);return new ViewHolder(v);
     }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, final int i) {
         Contacto contact = contactList.get(i);
@@ -40,8 +48,10 @@ public class AdapterContacto  extends RecyclerView.Adapter<AdapterContacto.ViewH
             }
         });
     }
+
     @Override
     public int getItemCount() { return contactList.size(); }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mNameTextView;private TextView mInitialsTextView;private GradientDrawable mInitialsBackground;
         ViewHolder(View itemView) {
@@ -51,7 +61,9 @@ public class AdapterContacto  extends RecyclerView.Adapter<AdapterContacto.ViewH
             mInitialsBackground = (GradientDrawable) mInitialsTextView.getBackground();
         }
     }
+
     void updateData(List<Contacto> contacts) {
-        this.contactList = contacts; notifyDataSetChanged();
+        this.contactList = contacts;
+        notifyDataSetChanged();
     }
 }
